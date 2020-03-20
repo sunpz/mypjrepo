@@ -1,0 +1,79 @@
+<apex:page controller="GoodsController" showHeader="false">
+ <!-- <script>
+        function query123(goodsName) {
+            var goodsName = document.getElementById(goodsName).value; 
+            console.log('goodsName:'+goodsName);
+            Visualforce.remoting.Manager.invokeAction( 
+                '{!$RemoteAction.GoodsController.queryForName}', 
+                goodsName, 
+                function(result, event){ 
+                    console.log('aaa');
+                    if (event.status) { // Get DOM IDs for HTML and Visualforce elements like this 
+                    } else if (event.type === 'exception') { 
+                    } else { 
+                    } 
+                }, 
+                {escape: false} 
+            );  
+        } 
+    </script>-->
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock title="GOODS">
+            <apex:pageBlockSection title="query goods">
+                <apex:inputText value="{!goodsName}" tabIndex="4" label="goodsName"
+                    id="goodsName" />
+                <apex:selectList multiselect="false" size="1" value="{!goodsType}"
+                    label="goodsType:">
+                    <apex:selectOptions value="{!typeNames}">
+                    </apex:selectOptions>
+                </apex:selectList>
+                <apex:inputText value="{!goodsPriceStart}" tabIndex="3"
+                    label="goodsPriceStart" />
+                <apex:inputText value="{!goodsPriceEnd}" tabIndex="5"
+                    label="goodsPriceEnd" />
+                <apex:inputText value="{!goodsDescribe}" tabIndex="1"
+                    label="goodsDescribe" />
+                <apex:commandButton value="query" action="{!query}"
+                    />
+            </apex:pageBlockSection>
+
+            <!-- <apex:pageBlockSection title="query goods By Name Via JS">
+                <apex:inputText label="goodsName" id="goodsName1" />
+                <apex:commandButton value="query" onclick="query123('{!$Component.goodsName1}')"
+                    styleClass="centerStyle" />
+            </apex:pageBlockSection> -->
+            
+            <apex:pageBlockTable value="{!goodsList}" var="goods" id="resultGoods">
+                <apex:column headervalue="goodsName">
+                    <apex:inputField value="{!goods.GoodsName__c}"/>
+                </apex:column>
+                <apex:column headervalue="goodsPrice">
+                    <apex:inputField value="{!goods.GoodsPrice__c}" />
+                </apex:column>
+                <apex:column headervalue="goodsType">
+                    <apex:inputField value="{!goods.GoodsType__c}" />
+                </apex:column>
+                <apex:column headervalue="goodsDescribe">
+                    <apex:inputField value="{!goods.GoodsDescribe__c}" />
+                </apex:column>
+                <apex:column headervalue="delete?">
+                    <apex:commandLink value="delete" action="{!deleteGoods}">
+                        <apex:param name="goodsId" value="{!goods.Id}"></apex:param>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <!-- <apex:pageBlockTable value="{!goodsList}" var="goods" rendered="{!goodsList == null || goods == null}">
+                <apex:column colspan="7">
+                    <apex:outputText value="no records"/>
+                </apex:column>
+            </apex:pageBlockTable> -->        
+            <apex:pageBlockSection >
+                <apex:commandButton value="add" action="{!add}" />
+                <apex:commandButton value="save" action="{!save}" />
+            </apex:pageBlockSection>
+            <apex:pageMessages />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

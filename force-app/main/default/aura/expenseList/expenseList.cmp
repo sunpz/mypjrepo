@@ -1,0 +1,34 @@
+<aura:component>
+
+    <aura:attribute name="expenses" type="Expense__c[]"/>
+
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+            <h3 class="slds-text-heading--small">Expenses</h3>
+        </header>
+        
+        <section class="slds-card__body">
+            <div id="list" class="row">
+                <table>
+                    <tr> <td>Name</td>
+                         <td>Amount</td>
+                        <td>Client </td>
+                        <td>Date </td>
+                        <td>Reimbursed</td>
+                    </tr>
+                    <tr>
+                <aura:iteration items="{!v.expenses}" var="expense">
+                    <c:expenseItem expense="{!expense}"/>
+                </aura:iteration>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <div class="slds-m-top--small">
+         <ui:button label="Save Expense"
+             class="slds-button slds-button--brand"
+             press="{!c.clickSaveExpense}"/>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,35 @@
+<apex:page controller="TradeRegisterController" sidebar="false" action="{!init}" title="会計仕分け入力画面" id="pageId">
+    <meta content="charset=utf-8" />
+    <style>
+        .headerRow .buttonTableTitle {
+            border-left: thin solid black !important;
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+        .headerRow .TableTitle {
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+        table.PageLink td{
+            font-size: 12px;
+        }
+        .headerRow .checkboxTableTitle {
+            border-left: thin solid black !important;
+            border-right: thin solid black !important;
+            border-bottom: thin solid black !important;
+            background-color: #fde9d9 !important;
+            text-align: center;
+        }
+    </style>
+    <apex:form id="formId">
+        <!-- メッセージ -->
+        <apex:pageMessages id="pageMessages"/>
+        <apex:pageBlock title="仕訳入力画面" id="blockId" mode="edit">
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

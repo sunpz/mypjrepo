@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JapaneseCertification__c</fullName>
+    <externalId>false</externalId>
+    <label>日本語資格</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N1</fullName>
+                <default>false</default>
+                <label>N1</label>
+            </value>
+            <value>
+                <fullName>N2</fullName>
+                <default>false</default>
+                <label>N2</label>
+            </value>
+            <value>
+                <fullName>N3</fullName>
+                <default>false</default>
+                <label>N3</label>
+            </value>
+            <value>
+                <fullName>N4</fullName>
+                <default>false</default>
+                <label>N4</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

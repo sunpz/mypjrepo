@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContractPeriod__c</fullName>
+    <externalId>false</externalId>
+    <label>契約期間</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>１か月</fullName>
+                <default>false</default>
+                <label>１か月</label>
+            </value>
+            <value>
+                <fullName>３か月</fullName>
+                <default>false</default>
+                <label>３か月</label>
+            </value>
+            <value>
+                <fullName>年</fullName>
+                <default>false</default>
+                <label>年</label>
+            </value>
+            <value>
+                <fullName>一年</fullName>
+                <default>false</default>
+                <label>一年</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

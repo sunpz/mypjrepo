@@ -1,0 +1,128 @@
+<!--
+  @Page Name          : TravelRequestList.page
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 2019-7-13 19:18:06
+  @Modification Log   : 
+  ==============================================================================
+  Ver         Date                     Author      		      Modification
+  ==============================================================================
+  1.0    2019-7-13 19:18:06   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<apex:page controller="TravelRequestListController" action="{!init}" sidebar="false" Id="TravelRequestList" >
+<style type="text/css">
+    #conditionTable { width: 50%; border: 0; margin-left: 5%; }
+    #conditionTable .label { text-align: right; }
+    #conditionTable .dateFormat { display: none; }
+</style>
+<script type="text/javascript">
+    // ページを開いたときに初期フォーカスをしない
+    beenFocused = true;
+</script>
+<apex:form id="form1">
+    <apex:pageBlock title="出張一覧">
+        <apex:pageMessages id="messagearea" showDetail="false"/>
+        <apex:pageblockSection id="conditionSection" title="検索" columns="1">
+            <apex:outputpanel id="searchcondition">
+                <table id="conditionTable">
+                    <tr>
+                        <td class="label"><apex:outputLabel value="ステータス" for="scStatus" styleClass="labelCol" /></td>
+                        <td><apex:inputField id="scStatus" value="{!condition.obj.SearchConditionStatus__c}" /></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><apex:outputLabel value="最終更新日"  styleClass="labelCol" /></td>
+                        <td>
+                            <apex:inputField id="scLastModifiedFrom" value="{!condition.obj.SearchConditionLastModifiedFrom__c}" />
+                            <apex:outputLabel value=" ～　"  styleClass="labelCol" />
+                            <apex:inputField id="scLastModifiedTo" value="{!condition.obj.SearchConditionLastModifiedTo__c}" />
+                        </td>
+                    </tr>
+                </table>
+            </apex:outputpanel>
+        </apex:pageblockSection>
+        <apex:pageBlockButtons id="buttonSection" location="bottom" >
+            <apex:commandButton value="検索" action="{!search}" style="font-size:12pt;width:100px;height:30px;" reRender="searchresult,messagearea"/>
+            <apex:commandButton value="クリア" action="{!clear}" style="font-size:12pt;width:100px;height:30px;" reRender="searchcondition,searchresult,messagearea"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+</apex:form>
+<apex:outputpanel id="searchresult">
+    <apex:pageBlock title="検索結果：" rendered="{!(results.size == 0)}">
+         検索条件に該当するデータがありません
+    </apex:pageBlock>
+
+    <apex:form id="resultForm">
+        <apex:pageBlock id="resultBlock" title="出張一覧" rendered="{!(results.size > 0)}">
+            <apex:outputtext style="width:110px" value="結果 : {!results.size}件"/>
+            <apex:pageblockTable id="resultTable" value="{!results}" var="o" frame="box">
+                <apex:column style="width:80px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="出張申請番号{!IF(sortKey == 'Name', sortOrder, '　')}">
+                            <apex:param value="Name" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputlink value="/{!o.Id}"><apex:outputField style="width:80px" value="{!o.Name}"/></apex:outputlink>
+                </apex:column>
+                <apex:column style="width:160px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="出張申請名{!IF(sortKey == 'TravelRequestName__c', sortOrder, '　')}">
+                            <apex:param value="TravelRequestName__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.TravelRequestName__c}"/>
+                </apex:column>
+                <apex:column style="width:80px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="ステータス{!IF(sortKey == 'Status__c', sortOrder, '　')}">
+                            <apex:param value="Status__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputField style="width:150px" value="{!o.Status__c}"/>
+                </apex:column>
+                <apex:column style="width:80px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="出張開始日{!IF(sortKey == 'TravelStartDate__c', sortOrder, '　')}">
+                            <apex:param value="TravelStartDate__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:80px" value="{!o.TravelStartDate__c}"/>
+                </apex:column>
+                <apex:column style="width:80px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="出張終了日{!IF(sortKey == 'TravelEndDate__c', sortOrder, '　')}">
+                            <apex:param value="TravelEndDate__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:80px" value="{!o.TravelEndDate__c}"/>
+                </apex:column>
+                <apex:column style="width:120px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="出張目的{!IF(sortKey == 'Purpose_of_Travel__c', sortOrder, '　')}">
+                            <apex:param value="Purpose_of_Travel__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.Purpose_of_Travel__c}"/>
+                </apex:column>
+                <apex:column style="width:120px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="総費用{!IF(sortKey == 'Total__c', sortOrder, '　')}">
+                            <apex:param value="Total__c" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:150px" value="{!o.Total__c}"/>
+                </apex:column>
+                <apex:column style="width:80px">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sort}" value="最終更新日時{!IF(sortKey == 'LastModifiedDate', sortOrder, '　')}">
+                            <apex:param value="LastModifiedDate" name="String" assignTo="{!sortingField}" />
+                        </apex:commandLink>
+                    </apex:facet> 
+                    <apex:outputField style="width:80px" value="{!o.LastModifiedDate}"/>
+                </apex:column>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:outputpanel>
+</apex:page>

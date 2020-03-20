@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_Employee_InputRule01</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT REGEX(ShimeiKanji__c, &quot;[^\\x00-\\xFF｡-ﾟ]*&quot;)</errorConditionFormula>
+    <errorDisplayField>ShimeiKanji__c</errorDisplayField>
+    <errorMessage>氏名（漢字）は全角文字を入力してください。</errorMessage>
+</ValidationRule>

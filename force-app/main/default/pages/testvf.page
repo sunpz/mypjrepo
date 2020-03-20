@@ -1,0 +1,6 @@
+<!--Visualforceコード-->
+<apex:page controller="Apiget">
+    <apex:repeat value="{!apinameList}" var="ls">
+        {!ls.objectLabel},{!ls.objectName},{!ls.objectkeyPrefix}<br />
+    </apex:repeat>
+</apex:page>

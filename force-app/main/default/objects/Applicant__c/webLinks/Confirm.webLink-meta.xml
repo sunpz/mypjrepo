@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confirm</fullName>
+    <availability>online</availability>
+    <description>確認ボタン</description>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>確認</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!Applicant__c.Birthday__c} &gt; 2000/01/01</url>
+</WebLink>

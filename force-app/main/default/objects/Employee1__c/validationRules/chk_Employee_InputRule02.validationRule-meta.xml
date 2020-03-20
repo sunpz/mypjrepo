@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_Employee_InputRule02</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT REGEX(ShimeiKatakana__c, &quot;[^\\x00-\\xFF｡-ﾟ]*&quot;)</errorConditionFormula>
+    <errorDisplayField>ShimeiKatakana__c</errorDisplayField>
+    <errorMessage>氏名（カタカナ）は全角カタカナ文字を入力してください。</errorMessage>
+</ValidationRule>

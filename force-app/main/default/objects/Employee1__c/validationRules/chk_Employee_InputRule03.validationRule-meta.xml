@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_Employee_InputRule03</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISNULL(TaisyokuDate__c)), NyusyaDate__c &gt; TaisyokuDate__c)</errorConditionFormula>
+    <errorMessage>入社年月日＞退職年月日のため、データを保存できません。</errorMessage>
+</ValidationRule>

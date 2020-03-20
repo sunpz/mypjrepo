@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>View</fullName>
+    <columns>NAME</columns>
+    <columns>GoodsBrand__c</columns>
+    <columns>GoodsDescribe__c</columns>
+    <columns>GoodsName__c</columns>
+    <columns>GoodsPrice__c</columns>
+    <columns>GoodsType__c</columns>
+    <columns>isStatus__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>全項目表示ビュー</label>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnkenListBtn</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>案件一覧</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>var redId =&#39;{!Employee__c.Id}&#39;;
+alert(redId);
+var url = &#39;/apex/AnkenSearch?id=&#39; + redId;
+window.open(url);</url>
+</WebLink>

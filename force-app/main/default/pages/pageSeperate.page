@@ -1,0 +1,32 @@
+<apex:page controller="PagingController">
+    <apex:form >
+        <apex:pageBlock title="Goods">
+
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!process}" value="Selected" />
+                <apex:commandButton action="{!cancel}" value="Cancel" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+
+            <apex:pageBlockSection title="Goods -  Page {!pageNumber}" columns="1">
+                <apex:pageBlockTable value="{!categories}" var="c">
+                    <apex:column width="25px">
+                        <apex:inputCheckbox value="{!c.checked}" />
+                    </apex:column>
+                    <apex:column value="{!c.goods.GoodsName__c}" headerValue="Name" />
+                    <apex:column value="{!c.goods.GoodsType__c}" headerValue="type" />
+                    <apex:column value="{!c.goods.GoodsBrand__c}" headerValue="brand" />
+                    <apex:column value="{!c.goods.GoodsPrice__c}" headerValue="Price" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+        <apex:panelGrid columns="4">
+            <apex:commandLink action="{!first}">First</apex:commandlink>
+                <apex:commandLink action="{!previous}" rendered="{!hasPrevious}">Previous</apex:commandlink>
+                    <apex:commandLink action="{!next}" rendered="{!hasNext}">Next</apex:commandlink>
+                        <apex:commandLink action="{!last}">Last</apex:commandlink>
+        </apex:panelGrid>
+
+    </apex:form>
+</apex:page>

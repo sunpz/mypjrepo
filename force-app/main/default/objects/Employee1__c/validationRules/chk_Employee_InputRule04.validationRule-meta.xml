@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_Employee_InputRule04</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+NOT(ISNULL(TaisyokuDate__c)), 
+NOT(ISNULL(AnkenEndDate__c)), 
+AnkenEndDate__c &gt; TaisyokuDate__c 
+)</errorConditionFormula>
+    <errorMessage>案件終了年月日＞退職年月日のため、データを保存できません。</errorMessage>
+</ValidationRule>
